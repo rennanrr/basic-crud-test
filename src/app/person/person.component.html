@@ -73,8 +73,8 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label class="mt-2">Nome</label>
-        <div id="inputName" class="input-group mb-2">
+        <label>Nome</label>
+        <div id="inputName" class="input-group">
           <input id="name" [ngClass]="'form-control ' + validation.name" 
           placeholder="Nome" type="text" [(ngModel)]="person.name" 
           [ngModelOptions]="{standalone: true}" (keyup)="verify($event.target.id, $event.target.value)">
@@ -82,8 +82,8 @@
             Este campo é obrigatório, e deve ter pelo menos 1 caractere.
           </div>
         </div>
-        <label>Celular</label>
-        <div id="inputPhone" class="input-group mb-2">
+        <label class="mt-3">Celular</label>
+        <div id="inputPhone" class="input-group">
           <input id="cellphone" [ngClass]="'form-control ' + validation.cellphone" 
           [showMaskTyped]="true" mask="+00 (00) 00000-0000" [ngModel]="person.cellphone" 
           [ngModelOptions]="{standalone: true}" (keyup)="verify($event.target.id, $event.target.value)">
@@ -91,8 +91,8 @@
             Este campo é obrigatório, e deve ser preenchido corretamente.
           </div>
         </div>
-        <label>CPF</label>
-        <div id="inputCpf" class="input-group mb-2">
+        <label class="mt-3">CPF</label>
+        <div id="inputCpf" class="input-group">
           <input id="cpf" [ngClass]="'form-control ' + validation.cpf" 
           [showMaskTyped]="true" mask="000.000.000-00" [ngModel]="person.cpf" 
           [ngModelOptions]="{standalone: true}" (keyup)="verify($event.target.id, $event.target.value)">

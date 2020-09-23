@@ -43,7 +43,6 @@ export class PersonComponent implements OnInit {
   }
 
   edit(content, person): void{
-    console.log(person);
     this.person.id = person.id; 
     this.person.name = person.name; 
     this.person.cellphone = person.cellphone;
@@ -86,7 +85,6 @@ export class PersonComponent implements OnInit {
           'is-valid' : 'is-invalid';
           break;
     }
-    console.log(this.validation);
   }
 
   isValidCPF(cpf): boolean {
