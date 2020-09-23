@@ -9,7 +9,7 @@ import { Person } from './Person';
 })
 export class PersonComponent implements OnInit {
 
-  personList: Person[] = [];
+  persons: Person[] = [];
   person: Person = new Person();
   id: number = 0;
   validation: Person = new Person();
@@ -31,11 +31,11 @@ export class PersonComponent implements OnInit {
       if(this.person.id === undefined) {
         this.person.id = this.id;
         this.id++;
-        this.personList = [...this.personList, this.person];
+        this.persons = [...this.persons, this.person];
       }
       else {
-        const index = this.personList.map(person => {return person.id}).indexOf(this.person.id);
-        this.personList[index] = this.person;
+        const index = this.persons.map(person => {return person.id}).indexOf(this.person.id);
+        this.persons[index] = this.person;
       }
       this.person = new Person();
       this.validation = new Person();
@@ -56,8 +56,8 @@ export class PersonComponent implements OnInit {
 
   delete(person): void{
     if(confirm('Tem certeza de que deseja excluir esta pessoa?')) {
-      const index = this.personList.map(e => {return e.id}).indexOf(person.id);
-      this.personList.splice(index, 1);
+      const index = this.persons.map(e => {return e.id}).indexOf(person.id);
+      this.persons.splice(index, 1);
       this.person = new Person();
       this.validation = new Person();
       this.modalService.dismissAll();
@@ -65,7 +65,6 @@ export class PersonComponent implements OnInit {
   }
 
   verify(attribute, value): void{
-    console.log(value);
     switch(attribute){
       case 'name':
         this.validation.name = 
@@ -78,15 +77,30 @@ export class PersonComponent implements OnInit {
         this.validation.cellphone = 
           value.match('^\(.+\)[0-9]{2}\(.+\){2}[0-9]{2}\(.+\){2}[0-9]{5}\-[0-9]{4}$')?
           'is-valid' : 'is-invalid';
-          console.log(this.validation);
         break;
 
       case 'cpf':
         this.person.cpf = value;
         this.validation.cpf = 
-          value.match('^[0-9]{3}.[0-9]{3}.[0-9]{3}\-[0-9]{2}$')?
+          value.match('^[0-9]{3}.[0-9]{3}.[0-9]{3}\-[0-9]{2}$') && this.isValidCPF(value)?
           'is-valid' : 'is-invalid';
           break;
     }
+    console.log(this.validation);
   }
+
+  isValidCPF(cpf): boolean {
+    const arrayCpf = cpf.replace(/\D/g,'').split('');
+    const arrayWeight = [[10,9,8,7,6,5,4,3,2], [11,10,9,8,7,6,5,4,3,2]];
+    var calcCD = [0, 0];
+
+    for(let x = 0; x < arrayWeight.length; x++) {
+      for(let y = 0; y < arrayWeight[x].length; y++) {
+        calcCD[x] += arrayWeight[x][y] * arrayCpf[y];
+      }
+      calcCD[x] = (calcCD[x] * 10) % 11;
+      calcCD[x] = calcCD[x] === 10 ? 0 : calcCD[x];
+    }
+    return (calcCD[0] == arrayCpf[9] && calcCD[1] == arrayCpf[10]) ? true : false;
+}
 }

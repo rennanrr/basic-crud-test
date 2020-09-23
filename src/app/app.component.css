@@ -31,7 +31,7 @@
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #f89500;
+  background-color: #0dd25e;
   color: white;
 }
 /* Add loader */

@@ -7,7 +7,7 @@
           <button type="button" class="btn btn-outline-info mr-2" (click)="openModal(content)">+</button>
         </div>
         <div class="card-body">
-          <div [hidden]="(personList.length===0)" class="table-responsive">
+          <div [hidden]="(persons.length===0)" class="table-responsive">
             <table class="table cursor-table">
               <thead class="text-success">
                 <th>
@@ -27,7 +27,7 @@
                 </th>
               </thead>
               <tbody>
-                <tr *ngFor="let item of personList" [ngModelOptions]="{standalone: true}">
+                <tr *ngFor="let item of persons" [ngModelOptions]="{standalone: true}">
                   <td class="space cursor">
                     {{ item.name }}
                   </td>
@@ -73,23 +73,32 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="dateOfBirth">Nome</label>
-        <div id="inputName" class="input-group">
+        <label class="mt-2">Nome</label>
+        <div id="inputName" class="input-group mb-2">
           <input id="name" [ngClass]="'form-control ' + validation.name" 
           placeholder="Nome" type="text" [(ngModel)]="person.name" 
           [ngModelOptions]="{standalone: true}" (keyup)="verify($event.target.id, $event.target.value)">
+          <div [hidden]="validation.name!=='is-invalid'" class="invalid-feedback">
+            Este campo é obrigatório, e deve ter pelo menos 1 caractere.
+          </div>
         </div>
-        <label for="dateOfBirth">Celular</label>
-        <div id="inputPhone" class="input-group">
+        <label>Celular</label>
+        <div id="inputPhone" class="input-group mb-2">
           <input id="cellphone" [ngClass]="'form-control ' + validation.cellphone" 
           [showMaskTyped]="true" mask="+00 (00) 00000-0000" [ngModel]="person.cellphone" 
           [ngModelOptions]="{standalone: true}" (keyup)="verify($event.target.id, $event.target.value)">
+          <div [hidden]="validation.cellphone !== 'is-invalid'" class="invalid-feedback">
+            Este campo é obrigatório, e deve ser preenchido corretamente.
+          </div>
         </div>
-        <label for="dateOfBirth">CPF</label>
-        <div id="inputCpf" class="input-group">
+        <label>CPF</label>
+        <div id="inputCpf" class="input-group mb-2">
           <input id="cpf" [ngClass]="'form-control ' + validation.cpf" 
           [showMaskTyped]="true" mask="000.000.000-00" [ngModel]="person.cpf" 
           [ngModelOptions]="{standalone: true}" (keyup)="verify($event.target.id, $event.target.value)">
+          <div [hidden]="validation.cpf !== 'is-invalid'" class="invalid-feedback">
+            Este campo é obrigatório. Deve ser preenchido completamente e apenas com um CPF válido. 
+          </div>
         </div>
       </div>
     </form>

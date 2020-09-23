@@ -1,27 +1,45 @@
-# BasicCrud
+# Basic CRUD - Technical prequalification test for Cia da Consulta
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
+Developed by Rennan Ribas.
 
-## Development server
+## Tech Stack
+The following tools were used in the construction of the project:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Frontend
+- TypeScript
+- Angular 9
+- Angular Bootstrap
 
-## Code scaffolding
+## Demo
+### This project is uploaded on Heroku
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[Preview online here!!](https://basic-crud-test.herokuapp.com/)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Installation
 
-## Running unit tests
+Pre-requisits:
+- Node.js
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+If you do not have, follow the instructions on [this link](https://nodejs.org/en/download/).
 
-## Running end-to-end tests
+Then, clone this repository
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+git clone https://github.com/rennanrr/basic-crud-test.git
 
-## Further help
+```
+You have to compile and install node modules of this project into your machine:
+```
+npm install 
+```
+Finally, to run in your machine:
+```
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Exercises
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
