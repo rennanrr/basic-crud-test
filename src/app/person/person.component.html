@@ -1,0 +1,72 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Pessoas</h1>
+          <button type="button" class="btn btn-outline-danger mr-2" (click)="open(content)">+</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table maozinha">
+              <thead class=" text-primary">
+                <th>
+                  Nome
+                </th>
+                <th>
+                  Celular
+                </th>
+                <th>
+                  CPF
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of personList" [ngModelOptions]="{standalone: true}"  (click)="openPerson(content, item)">
+                  <td class="space cursor">
+                    {{ item.name }}
+                  </td>
+                  <td class="space cursor">
+                    {{ item.cellphone }}
+                  </td>
+                  <td class="space cursor">
+                    {{ item.cpf }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{person.id?'Alterar + person.name':'Cadastrar'}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Nome</label>
+        <div class="input-group">
+          <input id="name" class="form-control" placeholder="Nome" type="text" [(ngModel)]="person.name" [ngModelOptions]="{standalone: true}">
+        </div>
+        <label for="dateOfBirth">Celular</label>
+        <div class="input-group">
+          <input id="name" class="form-control" placeholder="+XX (XX) XXXXX-XXXX" type="text" [(ngModel)]="person.cellphone" [ngModelOptions]="{standalone: true}">
+        </div>
+        <label for="dateOfBirth">CPF</label>
+        <div class="input-group">
+          <input id="name" class="form-control" placeholder="XXX.XXX.XXX-XX" type="text" [(ngModel)]="person.cpf" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="addPerson()" [hidden]="(person.id>=0)">Adicionar</button>
+  </div>
+</ng-template>
