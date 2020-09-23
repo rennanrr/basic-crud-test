@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './home/home.component';
 import { FormsModule }   from '@angular/forms';
+
+import { HomeComponent } from './home/home.component';
+import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PersonComponent } from './person/person.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
