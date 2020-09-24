@@ -38,8 +38,6 @@ Finally, to run in your machine:
 ng serve
 ```
 
-## Exercises
-
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
