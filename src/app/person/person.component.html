@@ -73,7 +73,7 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label>Nome</label>
+        <label>Nome Completo</label>
         <div id="inputName" class="input-group">
           <input id="name" [ngClass]="'form-control ' + validation.name" 
           placeholder="Nome" type="text" [(ngModel)]="person.name" 
@@ -99,6 +99,12 @@
           <div [hidden]="validation.cpf !== 'is-invalid'" class="invalid-feedback">
             Este campo é obrigatório. Deve ser preenchido completamente e apenas com um CPF válido. 
           </div>
+        </div>
+        <div id="createdAt" class="input-group mt-3 mb-0" [hidden]="!person.createdAt">
+          <p>Usuário criado em {{ person.createdAt | date: 'd/M/yy, HH:mm'}}</p>
+        </div>
+        <div id="updatedAt" class="input-group mt-3 mb-0" [hidden]="!person.updatedAt || person.createdAt === person.updatedAt">
+          <p>Usuário criado em {{ person.createdAt | date: 'd/M/yy, HH:mm'}}</p>
         </div>
       </div>
     </form>

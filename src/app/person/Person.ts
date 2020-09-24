@@ -3,6 +3,6 @@ export class Person {
     name: string;
     cellphone: string;
     cpf: string; 
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 }

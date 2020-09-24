@@ -30,11 +30,13 @@ export class PersonComponent implements OnInit {
   save(): void{
       if(this.person.id === undefined) {
         this.person.id = this.id;
+        this.person.createdAt = new Date(Date.now());
         this.id++;
         this.persons = [...this.persons, this.person];
       }
       else {
         const index = this.persons.map(person => {return person.id}).indexOf(this.person.id);
+        this.person.updatedAt = new Date(Date.now());
         this.persons[index] = this.person;
       }
       this.person = new Person();
@@ -43,14 +45,12 @@ export class PersonComponent implements OnInit {
   }
 
   edit(content, person): void{
-    this.person.id = person.id; 
-    this.person.name = person.name; 
-    this.person.cellphone = person.cellphone;
-    this.person.cpf = person.cpf; 
+    this.person = {...person};
+
     this.openModal(content);
-    this.verify('name', person.name);
-    this.verify('cellphone', person.cellphone);
-    this.verify('cpf', person.cpf);
+    this.validation.name = 'is-valid';
+    this.validation.cellphone = 'is-valid';
+    this.validation.cpf = 'is-valid';
   }
 
   delete(person): void{
