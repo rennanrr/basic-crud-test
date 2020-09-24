@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PersonService } from './person.service';
 
 import { Person } from './Person';
 @Component({
@@ -13,10 +14,23 @@ export class PersonComponent implements OnInit {
   person: Person = new Person();
   id: number = 0;
   validation: Person = new Person();
+  lengthStorage: number = 0;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+    private personService: PersonService) { }
 
   ngOnInit(): void {
+    let localStorage: Person[] = this.personService.getLocalStorageData();
+    this.lengthStorage = localStorage.length;
+    this.persons = localStorage ? localStorage : [];
+  }
+
+  saveLocalStorage(): void{
+    this.personService.setLocalStorageData(this.persons);
+  }
+
+  cleanLocalStorage(): void{
+    this.personService.deleteLocalStorageData();
   }
 
   openModal(content) {
@@ -100,5 +114,5 @@ export class PersonComponent implements OnInit {
       calcCD[x] = calcCD[x] === 10 ? 0 : calcCD[x];
     }
     return (calcCD[0] == arrayCpf[9] && calcCD[1] == arrayCpf[10]) ? true : false;
-}
+  }
 }

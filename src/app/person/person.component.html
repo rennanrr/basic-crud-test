@@ -4,7 +4,22 @@
       <div class="card">
         <div class="card-header">
           <h1>Pessoas</h1>
-          <button type="button" class="btn btn-outline-info mr-2" (click)="openModal(content)">+</button>
+          <div class="row justify-content-between">
+            <div class="col">
+              <button type="button" class="btn btn-outline-success mr-2" (click)="openModal(content)">+</button>
+            </div>
+            <div class="col text-right">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-dark" id="dropdownBasic1" ngbDropdownToggle>
+                  <img src="../../assets/icons/save-icon.svg" fluid/>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem (click)="saveLocalStorage()">Salvar localmente</button>
+                  <button ngbDropdownItem (click)="cleanLocalStorage()">Limpar cache ({{ lengthStorage }})</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <div [hidden]="(persons.length===0)" class="table-responsive">
