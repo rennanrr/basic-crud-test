@@ -15,7 +15,7 @@
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                   <button ngbDropdownItem (click)="saveLocalStorage()">Salvar localmente</button>
-                  <button ngbDropdownItem (click)="cleanLocalStorage()">Limpar cache ({{ lengthStorage }})</button>
+                  <button ngbDropdownItem (click)="cleanLocalStorage()">Limpar cache {{ lengthStorage ? '(' + lengthStorage + ')' : '' }}</button>
                 </div>
               </div>
             </div>

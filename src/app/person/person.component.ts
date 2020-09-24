@@ -21,7 +21,7 @@ export class PersonComponent implements OnInit {
 
   ngOnInit(): void {
     let localStorage: Person[] = this.personService.getLocalStorageData();
-    this.lengthStorage = localStorage.length;
+    this.lengthStorage = localStorage ? localStorage.length : 0;
     this.persons = localStorage ? localStorage : [];
   }
 
