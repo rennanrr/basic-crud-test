@@ -15,6 +15,7 @@
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                   <button ngbDropdownItem (click)="saveLocalStorage()">Salvar localmente</button>
+                  <button ngbDropdownItem (click)="importLocalStorage()">Importar dados salvos</button>
                   <button ngbDropdownItem (click)="cleanLocalStorage()">Limpar cache {{ lengthStorage ? '(' + lengthStorage + ')' : '' }}</button>
                 </div>
               </div>
@@ -115,11 +116,11 @@
             Este campo é obrigatório. Deve ser preenchido completamente e apenas com um CPF válido. 
           </div>
         </div>
-        <div id="createdAt" class="input-group mt-3 mb-0" [hidden]="!person.createdAt">
-          <p>Usuário criado em {{ person.createdAt | date: 'd/M/yy, HH:mm'}}</p>
+        <div class="alert-light mt-3 mb-0" role="alert" [hidden]="!person.createdAt">
+          Usuário criado em {{ person.createdAt | date: 'dd/MM/yyyy, HH:mm'}}
         </div>
-        <div id="updatedAt" class="input-group mt-3 mb-0" [hidden]="!person.updatedAt || person.createdAt === person.updatedAt">
-          <p>Usuário criado em {{ person.createdAt | date: 'd/M/yy, HH:mm'}}</p>
+        <div class="alert-light mt-2 mb-0" role="alert" [hidden]="!person.updatedAt || person.createdAt === person.updatedAt">
+          Usuário editado em {{ person.updatedAt | date: 'dd/MM/yyyy, HH:mm'}}
         </div>
       </div>
     </form>

@@ -25,12 +25,24 @@ export class PersonComponent implements OnInit {
     this.persons = localStorage ? localStorage : [];
   }
 
+  importLocalStorage(): void{
+    if(confirm('Tem certeza de que deseja importar os dados locais? Todas as informações que ainda não estão salvas serão perdidas.')){
+      let localStorage: Person[] = this.personService.getLocalStorageData();
+      this.persons = localStorage ? localStorage : [];
+    }
+  }
+
   saveLocalStorage(): void{
-    this.personService.setLocalStorageData(this.persons);
+    if(confirm('Tem certeza de que deseja salvar? Todas as informações que já estão salvas serão alteradas pelas atuais.')){
+      this.personService.setLocalStorageData(this.persons);
+      this.lengthStorage = this.persons ? this.persons.length : 0;
+    }
   }
 
   cleanLocalStorage(): void{
-    this.personService.deleteLocalStorageData();
+    if(confirm('Tem certeza de que deseja excluir os dados locais? Todas as informações salvas serão perdidas.')){
+      this.personService.deleteLocalStorageData();
+    }
   }
 
   openModal(content) {
@@ -49,9 +61,11 @@ export class PersonComponent implements OnInit {
         this.persons = [...this.persons, this.person];
       }
       else {
-        const index = this.persons.map(person => {return person.id}).indexOf(this.person.id);
-        this.person.updatedAt = new Date(Date.now());
-        this.persons[index] = this.person;
+        if(confirm(`Tem certeza de que deseja editar ${this.person.name}?`)){
+          const index = this.persons.map(person => {return person.id}).indexOf(this.person.id);
+          this.person.updatedAt = new Date(Date.now());
+          this.persons[index] = this.person;
+        }
       }
       this.person = new Person();
       this.validation = new Person();
@@ -68,7 +82,7 @@ export class PersonComponent implements OnInit {
   }
 
   delete(person): void{
-    if(confirm('Tem certeza de que deseja excluir esta pessoa?')) {
+    if(confirm(`Tem certeza de que deseja excluir ${this.person.name}?`)) {
       const index = this.persons.map(e => {return e.id}).indexOf(person.id);
       this.persons.splice(index, 1);
       this.person = new Person();
